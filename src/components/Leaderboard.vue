@@ -191,8 +191,7 @@ export default defineComponent({
   },
   computed: {
     sortedLeaderboard() {
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      return this.leaderboard.sort((a, b) => b.pop - a.pop);
+      return [...this.leaderboard].sort((a, b) => b.pop - a.pop);
     },
   },
   mounted() {
