@@ -161,7 +161,7 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import AnimatedNumber from "./AnimatedNumber.vue";
-import Flag from './Flag.vue'
+import Flag from "./Flag.vue";
 
 interface LeaderboardEntry {
   code: string;

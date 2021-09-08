@@ -6,8 +6,20 @@
     :title="title || iso"
   />
 </template>
-<script setup lang="ts">
-import 'country-flag-icons/3x2/flags.css';
+<script lang="ts">
+import { defineComponent } from "vue";
+import "country-flag-icons/3x2/flags.css";
 
-defineProps<{ iso: string, title?: string }>();
+export default defineComponent({
+  props: {
+    iso: {
+      type: String,
+      default: '',
+    },
+    title: {
+      type: String,
+      default: '',
+    },
+  },
+});
 </script>
