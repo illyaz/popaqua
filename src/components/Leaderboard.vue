@@ -133,7 +133,7 @@
             </li>
           </ul>
         </div>
-        <div class="text-center text-sm font-light pt-4 pb-4 ">
+        <div class="footer text-center text-sm font-light pt-4 pb-4 ">
           Made with <span class="text-red-400">❤</span> by Illyaz
           <a
             class="text-pink-500 font-bold text-base underline block"
@@ -311,5 +311,7 @@ export default defineComponent({
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-
+.footer {
+  background: white;
+}
 </style>
