@@ -298,8 +298,8 @@ export default defineComponent({
   transition-property: height, box-shadow;
 }
 
-.leaderboard:hover, .opened {
-  @apply ring-2 ring-pink-400;
+.leaderboard:hover {
+  @apply ring-2 ring-pink-300;
 }
 
 .leaderboard.opened {
