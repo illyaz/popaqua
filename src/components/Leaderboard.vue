@@ -209,17 +209,19 @@ export default defineComponent({
         if (this.leaderboard.length == 0)
           this.leaderboard = data
         else {
-          let i = 0
+          let i = 0;
+          const tempSortNewData = data.sort((a, b) => b.pop - a.pop);
 
-          for (const entry of data) {
-            const oldEntryIndex = this.leaderboard.findIndex(x => x.code == entry.code)
+          for (const newEntry of tempSortNewData) {
+            const oldEntryIndex = this.sortedLeaderboard.findIndex(x => x.code == newEntry.code)
+
             if (oldEntryIndex != i) {
               this.leaderboard = data;
               break;
             } else {
-              const oldEntry = this.leaderboard[oldEntryIndex];
-              oldEntry.pps = (entry.pop - oldEntry.pop) / ((Date.now() - this.lastLoadedLeaderboard) / 1000);
-              oldEntry.pop = entry.pop;
+              const oldEntry = this.sortedLeaderboard[oldEntryIndex];
+              oldEntry.pps = (newEntry.pop - oldEntry.pop) / ((Date.now() - this.lastLoadedLeaderboard) / 1000);
+              oldEntry.pop = newEntry.pop;
             }
             i++;
           }
@@ -235,7 +237,8 @@ export default defineComponent({
 
         this.lastLoadedLeaderboard = Date.now();
         setTimeout(this.loadLeaderboard, 10000)
-      } catch {
+      } catch(error) {
+        console.error("loadLeaderboard", error)
         setTimeout(this.loadLeaderboard, 1000)
       }
     },
