@@ -90,7 +90,7 @@
             <span>Loading ...</span>
           </div>
           <ul
-            v-for="(n, i) in leaderboard.filter(x=>x.pop)"
+            v-for="(n, i) in sortedLeaderboard.filter(x=>x.pop)"
             v-else
             :key="n.code"
             class="p-2 pt-1 pb-1"
@@ -189,6 +189,12 @@ export default defineComponent({
       lastLoadedLeaderboard: 0
     }
   },
+  computed: {
+    sortedLeaderboard() {
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      return this.leaderboard.sort((a, b) => b.pop - a.pop);
+    },
+  },
   mounted() {
     this.loadLeaderboard();
   },
@@ -270,8 +276,7 @@ export default defineComponent({
               pop: r[key]
             });
           }
-
-          return result.sort((a, b) => b.pop - a.pop);
+          return result;
         })
   }
 });
