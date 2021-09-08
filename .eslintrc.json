@@ -1,0 +1,29 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module",
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "./",
+    "extraFileExtensions": [ ".vue" ]
+  },
+  "plugins": [
+    "vue",
+    "@typescript-eslint"
+  ],
+  "rules": {
+  }
+}

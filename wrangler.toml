@@ -1,0 +1,8 @@
+name = "popaqua"
+type = "webpack"
+route = 'https://dev-popaqua.vtracker.app/*'
+zone_id = 'dde36a51f1245c5274b68833fe6c7c9d'
+usage_model = ''
+compatibility_flags = []
+workers_dev = true
+site = {bucket = "./dist",entry-point = "workers-site"}

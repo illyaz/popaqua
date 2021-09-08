@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+    background-image: url('./assets/aqua1.png'), url('./assets/aqua2.png');
+    background-size: 0;
+}
+#app, body, html {
+    height: 100%;
+    overflow: hidden;
+}

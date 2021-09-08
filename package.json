@@ -1,0 +1,35 @@
+{
+  "name": "popaqua",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "animejs": "^3.2.1",
+    "country-flag-icons": "^1.4.9",
+    "howler": "^2.2.3",
+    "vue": "^3.2.6",
+    "vue-recaptcha-v3": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/animejs": "^3.1.4",
+    "@types/howler": "^2.2.4",
+    "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "@vitejs/plugin-vue": "^1.6.0",
+    "@vue/compiler-sfc": "^3.2.6",
+    "autoprefixer": "^10.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-vue": "^7.0.0-beta.4",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.9",
+    "typescript": "^4.3.2",
+    "vite": "^2.5.2",
+    "vue-tsc": "^0.2.2"
+  }
+}
