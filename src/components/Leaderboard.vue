@@ -268,12 +268,14 @@ export default defineComponent({
 
           const displayNames = new Intl.DisplayNames(['en'], {type: 'region'});
           for (const key in r) {
-            result[0].pop += r[key]
-            result.push({
-              code: key,
-              name: displayNames.of(key),
-              pop: r[key]
-            });
+            if (key !== 'XX') {
+              result[0].pop += r[key]
+              result.push({
+                code: key,
+                name: displayNames.of(key),
+                pop: r[key]
+              });
+            }
           }
           return result;
         })
@@ -292,7 +294,7 @@ export default defineComponent({
 
 .leaderboard {
   @apply bg-white rounded-t-md flex flex-col ring-0 duration-300 ease-in-out;
-  height: 41px;
+  height: 48px;
   transition-property: height, box-shadow;
 }
 
@@ -305,7 +307,7 @@ export default defineComponent({
 }
 
 .header {
-  @apply flex justify-between items-center p-2;
+  @apply flex justify-between items-center p-2 my-1;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
