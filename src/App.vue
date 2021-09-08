@@ -190,19 +190,19 @@ html {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 ::-webkit-scrollbar{
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-thumb{
   background: radial-gradient(circle, #FAB4B4 18%,#F0BBBB 77%);
-  border-radius: 25px;
+  border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover{
   background: #CC7E9D;
 }
 ::-webkit-scrollbar-track{
   background: #FCE8F0;
-  border-radius: 0px;
+  border-radius: 8px;
   box-shadow: inset 0px 0px 0px 0px ;
 }
 </style>
