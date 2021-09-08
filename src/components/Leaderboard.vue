@@ -181,7 +181,6 @@ export default defineComponent({
       open: false,
       currentCountry: '',
       loading: true,
-      winner: null as (LeaderboardEntry | null),
       worldPop: 0,
       leaderboard: [] as (LeaderboardEntry[]),
       currentCountryScore: 0,
@@ -192,6 +191,9 @@ export default defineComponent({
   computed: {
     sortedLeaderboard() {
       return [...this.leaderboard].sort((a, b) => b.pop - a.pop);
+    },
+    winner() {
+      return this.sortedLeaderboard[1];
     },
   },
   mounted() {
@@ -222,7 +224,7 @@ export default defineComponent({
             i++;
           }
         }
-        this.winner = data[1]
+        
         const countryScore = data.find(x => x.code == this.currentCountry)?.pop ?? 0;
         if (countryScore > this.currentCountryScore)
           this.currentCountryScore = countryScore
