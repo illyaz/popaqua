@@ -134,7 +134,7 @@
           </ul>
         </div>
         <div class="footer text-center text-sm font-light pt-4 pb-4 ">
-          Made with <span class="text-red-400">❤</span> by Illyaz
+          Made with <span class="text-red-400">❤</span> by Illyaz <span class="text-red-400">❤</span> king.ppap
           <a
             class="text-pink-500 font-bold text-base underline block"
             href="mailto:popaqua@vtracker.app"
