@@ -209,24 +209,15 @@ export default defineComponent({
         if (this.leaderboard.length == 0)
           this.leaderboard = data
         else {
-          let i = 0;
-          const tempSortNewData = data.sort((a, b) => b.pop - a.pop);
+          for (const newEntry of data) {
+            const oldEntryIndex = this.leaderboard.findIndex(x => x.code == newEntry.code)
 
-          for (const newEntry of tempSortNewData) {
-            const oldEntryIndex = this.sortedLeaderboard.findIndex(x => x.code == newEntry.code)
-
-            if (oldEntryIndex != i) {
-              this.leaderboard = data;
-              break;
-            } else {
-              const oldEntry = this.sortedLeaderboard[oldEntryIndex];
-              oldEntry.pps = (newEntry.pop - oldEntry.pop) / ((Date.now() - this.lastLoadedLeaderboard) / 1000);
-              oldEntry.pop = newEntry.pop;
-            }
-            i++;
+            const oldEntry = this.leaderboard[oldEntryIndex];
+            oldEntry.pps = (newEntry.pop - oldEntry.pop) / ((Date.now() - this.lastLoadedLeaderboard) / 1000);
+            oldEntry.pop = newEntry.pop;
           }
         }
-        
+
         const countryScore = data.find(x => x.code == this.currentCountry)?.pop ?? 0;
         if (countryScore > this.currentCountryScore)
           this.currentCountryScore = countryScore
