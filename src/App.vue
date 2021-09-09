@@ -1,3 +1,34 @@
+<template>
+  <div id="app">
+    <div
+      ref="clickRegion"
+      class="clickRegion"
+      @mousedown.prevent="bak(true);pop();"
+      @mouseup.prevent="bak(false)"
+      @click="leaderboardOpened=false"
+    />
+    <p
+      class="image-credit"
+    >
+      Art by <a
+        href="https://twitter.com/Nekotaririn_EX?s=20"
+        target="_blank"
+      >@Nekotaririn_EX</a>
+    </p>
+    <Aqua
+      class="max-w-sm"
+      style="margin-bottom: 47px;"
+      :rage="hmmm > 25"
+      :pop="isPop"
+      :count="popCount"
+    />
+    <Leaderboard
+      ref="lb"
+      :count="popCount"
+    />
+  </div>
+</template>
+
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {Howl} from 'howler';
@@ -118,37 +149,6 @@ export default defineComponent({
   },
 });
 </script>
-
-<template>
-  <div id="app">
-    <div
-      ref="clickRegion"
-      class="clickRegion"
-      @mousedown.prevent="bak(true);pop();"
-      @mouseup.prevent="bak(false)"
-      @click="leaderboardOpened=false"
-    />
-    <p
-      class="image-credit"
-    >
-      Art by <a
-        href="https://twitter.com/Nekotaririn_EX?s=20"
-        target="_blank"
-      >@Nekotaririn_EX</a>
-    </p>
-    <Aqua
-      class="max-w-sm"
-      style="margin-bottom: 47px;"
-      :rage="hmmm > 25"
-      :pop="isPop"
-      :count="popCount"
-    />
-    <Leaderboard
-      ref="lb"
-      :count="popCount"
-    />
-  </div>
-</template>
 
 <style scoped>
 #app {
