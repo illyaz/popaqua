@@ -139,6 +139,7 @@ export default defineComponent({
     <Aqua
       class="max-w-sm"
       style="margin-bottom: 47px;"
+      :rage="hmmm > 25"
       :pop="isPop"
       :count="popCount"
     />

@@ -1,7 +1,7 @@
 <template>
   <div
     class="aqua"
-    :class="{'pop': pop, 'not-pop': !pop}"
+    :class="{'pop': pop, 'not-pop': !pop, 'rage': rage}"
   >
     <transition
       name="count-anim"
@@ -23,6 +23,7 @@ import {ref, watch} from 'vue';
 
 const props = defineProps<{
   pop: boolean,
+  rage: boolean,
   count: number
 }>();
 const counterRotation = ref('c');
@@ -50,9 +51,18 @@ watch(() => props.count, () => {
   background-image: url("../assets/aqua1.png");
 }
 
+.aqua.pop.rage {
+  background-image: url("../assets/aqua1_rage.png");
+}
+
 .aqua.not-pop {
   background-image: url("../assets/aqua2.png");
 }
+
+.aqua.not-pop.rage {
+  background-image: url("../assets/aqua2_rage.png");
+}
+
 
 .count-anim-leave {
   display: none;
