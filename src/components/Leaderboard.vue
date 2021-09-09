@@ -12,7 +12,7 @@
           <div class="flex space-x-1 text-xs">
             <span class="text-base">🏆</span>
             <div
-              v-if="!open && !loading"
+              v-if="!open && !isLoading"
               class="flex items-center space-x-1 text-xs"
             >
               <span class="border-l h-5" />
@@ -35,7 +35,7 @@
               />
               <transition :key="currentCountryScore + addedPop">
                 <span
-                  v-if="!open && !loading"
+                  v-if="!open && !isLoading"
                   class=" text-sm font-bold"
                 >{{ (currentCountryScore + addedPop).toLocaleString('en') }}</span>
               </transition>
@@ -69,7 +69,7 @@
             </p>
           </div>
           <div
-            v-if="loading"
+            v-if="isLoading"
             class="flex items-center justify-center "
           >
             <svg
@@ -191,7 +191,7 @@ export default defineComponent({
       isError: '',
       open: false,
       currentCountry: '',
-      loading: true,
+      isLoading: true,
       worldPop: 0,
       leaderboard: [] as (LeaderboardEntry[]),
       currentCountryScore: 0,
@@ -226,6 +226,8 @@ export default defineComponent({
             if (oldEntry) {
               oldEntry.pps = (newEntry.pop - oldEntry.pop) / ((Date.now() - this.lastLoadedLeaderboard) / 1000);
               oldEntry.pop = newEntry.pop;
+            } else {
+              this.leaderboard.push(newEntry)
             }
           }
         }
@@ -235,8 +237,8 @@ export default defineComponent({
           this.currentCountryScore = countryScore
         this.addedPop = 0;
 
-        if (this.loading) {
-          this.loading = false;
+        if (this.isLoading) {
+          this.isLoading = false;
         }
         this.isError = '';
 
