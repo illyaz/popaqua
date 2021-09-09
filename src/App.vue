@@ -1,10 +1,12 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    @mousedown="bak(true);pop();"
+    @mouseup="bak(false)"
+  >
     <div
       ref="clickRegion"
       class="clickRegion"
-      @mousedown.prevent="bak(true);pop();"
-      @mouseup.prevent="bak(false)"
       @click="leaderboardOpened=false"
     />
     <p
