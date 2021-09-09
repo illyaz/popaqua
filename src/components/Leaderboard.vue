@@ -237,8 +237,8 @@ export default defineComponent({
 
         if (this.loading) {
           this.loading = false;
-          this.isError = '';
         }
+        this.isError = '';
 
         this.lastLoadedLeaderboard = Date.now();
         setTimeout(this.loadLeaderboard, 10000)
