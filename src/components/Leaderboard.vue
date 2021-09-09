@@ -214,6 +214,11 @@ export default defineComponent({
   methods: {
     async loadLeaderboard() {
       try {
+        if(!Intl.DisplayNames) {
+          await import('@formatjs/intl-displaynames/polyfill');
+          await import('@formatjs/intl-displaynames/locale-data/en');
+        }
+
         if (!this.currentCountry)
           this.currentCountry = await this.getCountryAsync();
 
