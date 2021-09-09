@@ -140,8 +140,9 @@
         </div>
         <div class="footer text-center text-sm font-light pt-4 pb-4 ">
           <a
-            class="text-pink-500 font-bold text-base block"
+            class="text-pink-500 font-bold text-base block underline hover:text-pink-700"
             href="https://youtu.be/HUWyLcPf1vo?t=1766"
+            target="_blank"
           >
             HERE HER POP!
           </a>
