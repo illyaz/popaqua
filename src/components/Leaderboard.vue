@@ -62,7 +62,12 @@
         </div>
       </div>
       <div class="overflow-auto border-t-2 divide-y">
-        <div class="divide-y">
+        <div class="divide-y ">
+          <div v-if="isError">
+            <p class="text-center">
+              <exclamation-icon class="error-icon" /> {{ isError }}
+            </p>
+          </div>
           <div
             v-if="loading"
             class="flex items-center justify-center "
@@ -162,6 +167,7 @@
 import {defineComponent} from "vue";
 import AnimatedNumber from "./AnimatedNumber.vue";
 import Flag from "./Flag.vue";
+import { ExclamationIcon } from '@heroicons/vue/solid'
 
 interface LeaderboardEntry {
   code: string;
@@ -171,13 +177,18 @@ interface LeaderboardEntry {
 }
 
 export default defineComponent({
-  components: {AnimatedNumber, Flag},
+  components: {
+    AnimatedNumber,
+    Flag,
+    ExclamationIcon,
+  },
   props: {
     count: {type: Number, required: true}
   },
   emits: ['update:open'],
   data() {
     return {
+      isError: '',
       open: false,
       currentCountry: '',
       loading: true,
@@ -211,10 +222,11 @@ export default defineComponent({
         else {
           for (const newEntry of data) {
             const oldEntryIndex = this.leaderboard.findIndex(x => x.code == newEntry.code)
-
             const oldEntry = this.leaderboard[oldEntryIndex];
-            oldEntry.pps = (newEntry.pop - oldEntry.pop) / ((Date.now() - this.lastLoadedLeaderboard) / 1000);
-            oldEntry.pop = newEntry.pop;
+            if (oldEntry) {
+              oldEntry.pps = (newEntry.pop - oldEntry.pop) / ((Date.now() - this.lastLoadedLeaderboard) / 1000);
+              oldEntry.pop = newEntry.pop;
+            }
           }
         }
 
@@ -223,14 +235,17 @@ export default defineComponent({
           this.currentCountryScore = countryScore
         this.addedPop = 0;
 
-        if (this.loading)
-          this.loading = false
+        if (this.loading) {
+          this.loading = false;
+          this.isError = '';
+        }
 
         this.lastLoadedLeaderboard = Date.now();
         setTimeout(this.loadLeaderboard, 10000)
       } catch(error) {
-        console.error("loadLeaderboard", error)
-        setTimeout(this.loadLeaderboard, 1000)
+        console.error("Can not load leaderboard", error)
+        this.isError = "Can not load leaderboard";
+        setTimeout(this.loadLeaderboard, 3000)
       }
     },
     formatNumber: (num: number, digits = 0) => {
@@ -309,5 +324,10 @@ export default defineComponent({
 }
 .footer {
   background: white;
+}
+
+.error-icon {
+  @apply h-10 w-10 text-red-500;
+  display: inline;
 }
 </style>
