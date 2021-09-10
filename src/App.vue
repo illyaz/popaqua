@@ -20,7 +20,7 @@
     <Aqua
       class="max-w-sm"
       style="margin-bottom: 47px;"
-      :rage="hmmm > 25"
+      :rage="hmmm > 3"
       :pop="isPop"
       :count="popCount"
     />
