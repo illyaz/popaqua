@@ -33,10 +33,13 @@
                 :iso="currentCountry"
                 class="mr-1"
               />
-              <transition :key="currentCountryScore + addedPop">
+              <transition
+                name="countryScore"
+              >
                 <span
                   v-if="!open && !isLoading"
-                  class=" text-sm font-bold"
+                  :key="currentCountryScore + addedPop"
+                  class="text-sm font-bold"
                 >{{ (currentCountryScore + addedPop).toLocaleString('en') }}</span>
               </transition>
               <span class="border-l h-5" />
@@ -65,7 +68,8 @@
         <div class="divide-y ">
           <div v-if="isError">
             <p class="text-center">
-              <exclamation-icon class="error-icon" /> {{ isError }}
+              <exclamation-icon class="error-icon" />
+              {{ isError }}
             </p>
           </div>
           <div
@@ -168,7 +172,7 @@
 import {defineComponent} from "vue";
 import AnimatedNumber from "./AnimatedNumber.vue";
 import Flag from "./Flag.vue";
-import { ExclamationIcon } from '@heroicons/vue/solid'
+import {ExclamationIcon} from '@heroicons/vue/solid'
 
 interface LeaderboardEntry {
   code: string;
@@ -214,7 +218,7 @@ export default defineComponent({
   methods: {
     async loadLeaderboard() {
       try {
-        if(!Intl.DisplayNames) {
+        if (!Intl.DisplayNames) {
           await import('@formatjs/intl-displaynames/polyfill');
           await import('@formatjs/intl-displaynames/locale-data/en');
         }
@@ -250,7 +254,7 @@ export default defineComponent({
 
         this.lastLoadedLeaderboard = Date.now();
         setTimeout(this.loadLeaderboard, 10000)
-      } catch(error) {
+      } catch (error) {
         console.error("Can not load leaderboard", error)
         this.isError = "Can not load leaderboard";
         setTimeout(this.loadLeaderboard, 3000)
@@ -330,6 +334,7 @@ export default defineComponent({
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
+
 .footer {
   background: white;
 }
@@ -337,5 +342,25 @@ export default defineComponent({
 .error-icon {
   @apply h-10 w-10 text-red-500;
   display: inline;
+}
+
+.countryScore-enter-active {
+  animation: countryScore .2s;
+}
+
+.countryScore-leave-active {
+  display: none;
+}
+
+@keyframes countryScore {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
