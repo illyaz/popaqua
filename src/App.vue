@@ -53,6 +53,20 @@ const popAudios = [
   new Howl({src: [pop4w, pop4m], format: ['webm', 'mp3']}),
 ];
 
+function weightedRandom(weights: number[]) {
+  let r = Math.random();
+  let index = weights.length - 1;
+
+  weights.some((prob, i) => {
+    if (r < prob) {
+      index = i;
+      return true;
+    }
+    r -= prob;
+  });
+  return index;
+}
+
 export default defineComponent({
   components: {Leaderboard, Aqua},
   data() {
@@ -96,7 +110,7 @@ export default defineComponent({
     },
     bak(pop: boolean) {
       this.isPop = pop;
-      if (pop) popAudios[Math.floor(Math.random() * popAudios.length)].play();
+      if (pop) popAudios[weightedRandom([0.31666666666666665, 0.31666666666666665, 0.31666666666666665, 0.05])].play();
     },
     onKeyDown(e: KeyboardEvent) {
       if (e.repeat || e.isComposing) return;
@@ -122,7 +136,7 @@ export default defineComponent({
     async sendScore() {
 
       if (this.currentSessionPopCount > 0) {
-        if(25 > this.hmmm) {
+        if (25 > this.hmmm) {
           await this.$recaptchaLoaded();
           const token = await this.$recaptcha('pop');
 
@@ -185,27 +199,32 @@ html {
   margin: 0;
   background: #e2a0a0;
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-::-webkit-scrollbar-thumb{
-  background: radial-gradient(circle, #FAB4B4 18%,#F0BBBB 77%);
+
+::-webkit-scrollbar-thumb {
+  background: radial-gradient(circle, #FAB4B4 18%, #F0BBBB 77%);
   border-radius: 8px;
 }
-::-webkit-scrollbar-thumb:hover{
+
+::-webkit-scrollbar-thumb:hover {
   background: #CC7E9D;
 }
-::-webkit-scrollbar-track{
+
+::-webkit-scrollbar-track {
   background: #FCE8F0;
   border-radius: 8px;
-  box-shadow: inset 0px 0px 0px 0px ;
+  box-shadow: inset 0px 0px 0px 0px;
 }
 </style>
