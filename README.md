@@ -1,6 +1,5 @@
-# Vue 3 + Typescript + Vite
-
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+# PopAqua
+Pop pop [Minato Aqua](https://twitter.com/minatoaqua/)
 
 ## Recommended IDE Setup
 
@@ -12,3 +11,7 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 ## TODO
 - [x] Add animation to current country score
+
+## Setup
+- `yarn`
+- `yarn dev`
